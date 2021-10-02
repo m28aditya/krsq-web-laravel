@@ -25,7 +25,7 @@ Route::post('/auth/sign-out', [AuthController::class, 'logout']);
 
 
 Route::middleware(['auth:user'])->group (function(){
-Route::get('/mahasiswa/biodata', [MahasiswaHome::class, 'index']);
+Route::get('/mahasiswa/biodata', [MahasiswaHome::class, 'index'])->name('mahasiswaHome');
 Route::post('/mahasiswa/{npm}/update', [MahasiswaHome::class, 'updateMahasiswa']); 
 Route::get('/mahasiswa/matkul',[MahasiswaMatkul::class, 'index']);
 Route::get('/mahasiswa/matkul/add',[MahasiswaMatkul::class, 'addMatkul']);
@@ -33,9 +33,10 @@ Route::post('/mahasiswa/matkul/add',[MahasiswaMatkul::class, 'addMatkulDetail'])
 Route::post('//mahasiswa/matkul/{id}/delete', [MahasiswaMatkul::class, 'destroy']);
 });
 
+
 Route::middleware(['auth:admin'])->group(function () {
 
-    Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index']);
+    Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index'])->name('adminHome');
     Route::get('/admin/mahasiswa/add', [MahasiswaController::class, 'addMahasiswa']);
     Route::post('/admin/mahasiswa/add', [MahasiswaController::class, 'createMahasiswa']);
     Route::get('/admin/mahasiswa/{npm}/detail', [MahasiswaController::class, 'detailMahasiswa']);
